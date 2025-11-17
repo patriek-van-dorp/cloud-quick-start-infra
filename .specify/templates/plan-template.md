@@ -31,7 +31,13 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+The following MUST be confirmed (all PASS required to proceed):
+- Security & Compliance First: Baseline policies, RBAC model, encryption approach defined.
+- IaC Landing Zones: Declarative modules chosen; drift & lint tooling selected.
+- Architecture & Standards Alignment: CAF + WAF pillar checklist drafted with initial risks.
+- Observability & Cost: Logging + metrics plan; preliminary cost estimation & budget.
+- Documentation & Collaboration: Feature spec stub + ADR needs identified; review roles assigned.
+- Innovation & Impact: Any experimental scope isolated; time-box defined if applicable.
 
 ## Project Structure
 

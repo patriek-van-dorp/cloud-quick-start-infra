@@ -68,6 +68,9 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] T007 Create base models/entities that all stories depend on
 - [ ] T008 Configure error handling and logging infrastructure
 - [ ] T009 Setup environment configuration management
+- [ ] T010 Establish security baseline policies (RBAC, encryption, network) per constitution
+- [ ] T011 Implement IaC landing zone module scaffolding + drift detection tooling
+- [ ] T012 Define CAF/WAF pillar checklist and initial risk register
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 

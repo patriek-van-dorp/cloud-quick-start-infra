@@ -90,6 +90,13 @@
 - **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
 - **FR-005**: System MUST [behavior, e.g., "log all security events"]
 
+Constitution-Mandated Categories (ensure at least one FR covers each):
+- Security & Compliance (policies, encryption, identity, logging)
+- IaC & Landing Zone Standardization (declarative provisioning, drift detection)
+- Architecture Alignment (CAF/WAF pillar consideration)
+- Observability & Cost (metrics, logs, budget controls)
+- Innovation & Impact (where experimentation influences delivery)
+
 *Example of marking unclear requirements:*
 
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
