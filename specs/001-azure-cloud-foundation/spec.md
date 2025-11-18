@@ -57,7 +57,7 @@ Finance teams and IT administrators need visibility into cloud spending and reso
 
 ### User Story 4 - Network Security and Connectivity (Priority: P4)
 
-Network administrators need to establish secure network architecture and connectivity patterns that support financial services workloads while maintaining proper network segmentation and security controls.
+Network administrators need to establish secure network architecture and connectivity patterns that support Financial Services (FSI) workloads while maintaining proper network segmentation and security controls.
 
 **Why this priority**: Network foundation is important but can be implemented after identity and governance foundations, as it primarily supports future workload deployment.
 
@@ -107,11 +107,12 @@ Operations teams need comprehensive monitoring and alerting capabilities to main
 - **FR-008**: System MUST maintain complete resource inventory with automated tagging and classification
 - **FR-009**: System MUST provide disaster recovery and backup capabilities for critical configurations
 - **FR-010**: System MUST support secure connectivity patterns for future workload deployment
-- **FR-011**: System MUST implement data residency controls to meet European Union (GDPR compliance) requirements
+- **FR-011**: System MUST implement data residency controls to meet European Union (GDPR compliance) requirements with all data stored exclusively in EU regions (West Europe primary, North Europe secondary)
 - **FR-012**: System MUST provide privileged access management with multi-factor authentication and conditional access policies based on risk factors
 - **FR-013**: System MUST maintain configuration baselines and detect configuration drift with manual approval required for remediation
-- **FR-014**: System MUST provide emergency access procedures with temporary elevated access and mandatory post-incident review
-- **FR-015**: System MUST maintain complete isolation from parent company Toyota Louwmans tenant to ensure FSI compliance separation
+- **FR-014**: System MUST provide emergency access procedures with temporary elevated access (maximum 4 hours, extensible by emergency response team), automated activation without human approval to prevent incident delays, and mandatory post-incident root cause analysis and resolution documentation
+- **FR-016**: System MUST maintain complete isolation from parent company Toyota Louwmans tenant to ensure FSI compliance separation
+- **FR-017**: System MUST implement automated audit data lifecycle management with secure archival after 7 years and automated retrieval capabilities for compliance investigations
 - **FR-016**: System MUST implement automated audit data lifecycle management with secure archival and retrieval capabilities
 
 ### Key Entities
@@ -135,7 +136,7 @@ Operations teams need comprehensive monitoring and alerting capabilities to main
 - **SC-004**: Cost variance from approved budgets is visible within 24 hours of resource deployment
 - **SC-005**: Audit reports can be generated covering 100% of administrative actions within 1 hour
 - **SC-006**: 99.9% uptime for identity and governance services during business hours (24x5) with planned maintenance windows to support business operations
-- **SC-007**: Resource provisioning requests are approved or denied within 30 minutes based on policy compliance
+- **SC-007**: Resource provisioning requests are approved or denied within 30 minutes based on policy compliance (automated approval for low-risk changes like tagging and naming policies, manual approval required for security and compliance policies, cost impact >€1000 requires manual approval)
 - **SC-008**: Monthly compliance attestation process completes within 2 business days with automated evidence collection
 
 ## Clarifications

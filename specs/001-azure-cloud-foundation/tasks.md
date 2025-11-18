@@ -76,10 +76,10 @@
 
 ### Identity Core Components
 
-- [ ] T018 [US1] Create Azure AD configuration Bicep module in modules/identity/azure-ad/main.bicep
+- [ ] T018 [US1] Create Microsoft Entra ID configuration Bicep module in modules/identity/entra-id/main.bicep
 - [ ] T019 [US1] Create RBAC role definitions Bicep module in modules/identity/rbac/custom-roles.bicep
 - [ ] T020 [US1] Create conditional access policies Bicep template in modules/identity/conditional-access/main.bicep
-- [ ] T021 [US1] Deploy Azure AD directory configuration using modules/identity/azure-ad/main.bicep
+- [ ] T021 [US1] Deploy Microsoft Entra ID directory configuration using modules/identity/entra-id/main.bicep
 
 ### Role-Based Access Control
 
@@ -98,6 +98,7 @@
 - [ ] T029 [US1] Test user authentication with corporate credentials in scripts/Test-Authentication.ps1
 - [ ] T030 [US1] Test role assignments and permission verification in scripts/Test-RBAC.ps1
 - [ ] T031 [US1] Test emergency access scenarios and break-glass procedures in scripts/Test-EmergencyAccess.ps1
+- [ ] T097 [US1] Test emergency access 4-hour time limits and automatic extension workflows in scripts/Test-EmergencyAccessTimeLimits.ps1
 
 ---
 
@@ -121,6 +122,7 @@
 
 - [ ] T037 [US2] Create compliance dashboard configuration in modules/governance/compliance-dashboard/main.bicep
 - [ ] T038 [US2] Setup 7-year audit log retention in modules/governance/audit-retention/main.bicep
+- [ ] T098 [US2] Create automated audit data archival and retrieval system in modules/governance/audit-lifecycle/main.bicep
 - [ ] T039 [US2] Configure policy violation alerting in modules/governance/compliance-alerts/main.bicep
 - [ ] T040 [US2] Deploy Azure Security Center compliance dashboard configuration
 
@@ -314,12 +316,12 @@ Final Integration: T089-T096
 
 ## Summary
 
-- **Total Tasks**: 96 tasks across 8 phases
+- **Total Tasks**: 98 tasks across 8 phases
 - **User Story Distribution**:
   - Setup: 10 tasks (T001-T010)
   - Foundation: 7 tasks (T011-T017)
-  - US1 (Identity): 14 tasks (T018-T031)
-  - US2 (Governance): 15 tasks (T032-T046)
+  - US1 (Identity): 15 tasks (T018-T031, T097)
+  - US2 (Governance): 16 tasks (T032-T046, T098)
   - US3 (Cost Management): 13 tasks (T047-T059)
   - US4 (Networking): 14 tasks (T060-T073)
   - US5 (Monitoring): 15 tasks (T074-T088)

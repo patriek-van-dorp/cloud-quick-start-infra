@@ -12,10 +12,10 @@ Build a comprehensive Azure Cloud Foundation for Toyota Louwmans Financial Servi
 ## Technical Context
 
 **IaC Language**: Bicep (per user requirement - NO ARM templates or Terraform)  
-**Azure Verified Modules**: NEEDS CLARIFICATION - Specific AVM modules for management groups, policies, networking, monitoring  
-**Landing Zone Type**: Enterprise Scale Landing Zone Foundation (FSI compliance requirements)  
-**Target Subscriptions**: NEEDS CLARIFICATION - Management group hierarchy and subscription organization strategy  
-**Azure Regions**: NEEDS CLARIFICATION - Primary EU region for GDPR compliance, secondary region for DR
+**Azure Verified Modules**: 15+ AVM modules for Enterprise Scale Landing Zone (management groups, policies, networking, Log Analytics, Key Vault, monitoring)  
+**Landing Zone Type**: Enterprise Scale Landing Zone Foundation (Financial Services FSI compliance requirements)  
+**Target Subscriptions**: 8-level management group hierarchy with 11 specialized subscriptions (connectivity, identity, management, landing zones)  
+**Azure Regions**: West Europe (primary) and North Europe (secondary) for GDPR compliance and disaster recovery
 **Project Type**: Enterprise Scale Landing Zone infrastructure  
 **Performance Goals**: 99.9% uptime (24x5), RTO 4 hours, RPO 1 hour for critical systems  
 **Compliance Requirements**: FSI regulations (SOX, PCI DSS), GDPR, 7-year audit retention, complete isolation from parent company  
