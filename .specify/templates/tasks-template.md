@@ -20,10 +20,10 @@ description: "Task list template for feature implementation"
 
 ## Path Conventions
 
-- **Single project**: `src/`, `tests/` at repository root
-- **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
+- **Infrastructure project**: `modules/`, `environments/`, `tests/` at repository root
+- **Enterprise Scale Landing Zone**: `management-groups/`, `subscriptions/`, `shared-services/`
+- **Multi-workload**: `workloads/[name]/`, `platform/`, `shared/`
+- Paths shown below assume infrastructure project - adjust based on plan.md structure
 
 <!-- 
   ============================================================================

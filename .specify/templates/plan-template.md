@@ -17,15 +17,15 @@
   the iteration process.
 -->
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**IaC Language**: [Bicep (preferred) or Terraform - NO ARM templates]  
+**Azure Verified Modules**: [List specific AVM modules to be used or NEEDS CLARIFICATION]  
+**Landing Zone Type**: [Enterprise Scale Foundation/Hub-Spoke/Virtual WAN or NEEDS CLARIFICATION]  
+**Target Subscriptions**: [Management groups and subscription organization or NEEDS CLARIFICATION]  
+**Azure Regions**: [Primary and secondary regions for deployment or NEEDS CLARIFICATION]
+**Project Type**: [infrastructure/workload/platform - determines source structure]  
+**Performance Goals**: [RTO/RPO targets, throughput requirements or NEEDS CLARIFICATION]  
+**Compliance Requirements**: [Regulatory standards, data residency or NEEDS CLARIFICATION]  
+**Scale/Scope**: [Number of workloads, users, resources expected or NEEDS CLARIFICATION]
 
 ## Constitution Check
 
@@ -51,37 +51,57 @@ specs/[###-feature]/
 <!--
   ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
   for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
+  real paths (e.g., workloads/web-app, modules/networking). The delivered plan must
   not include Option labels.
 -->
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
+# [REMOVE IF UNUSED] Option 1: Infrastructure project (DEFAULT)
+modules/
+├── networking/
+├── security/
+├── compute/
+└── monitoring/
+
+environments/
+├── dev/
+├── test/
+├── staging/
+└── prod/
 
 tests/
-├── contract/
+├── unit/
 ├── integration/
-└── unit/
+└── e2e/
 
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
+# [REMOVE IF UNUSED] Option 2: Enterprise Scale Landing Zone
+management-groups/
+├── policies/
+└── rbac/
 
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
+subscriptions/
+├── connectivity/
+├── identity/
+├── management/
+└── landing-zones/
+
+shared-services/
+├── networking/
+├── security/
+└── monitoring/
+
+# [REMOVE IF UNUSED] Option 3: Multi-workload platform
+platform/
+├── networking/
+├── shared-services/
+└── policies/
+
+workloads/
+├── [workload-name]/
+│   ├── modules/
+│   ├── environments/
+│   └── tests/
+└── shared/
 
 # [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
 api/
