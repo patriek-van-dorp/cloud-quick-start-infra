@@ -44,7 +44,7 @@
 
 - [X] T001 Create repository structure for Enterprise Scale Landing Zone in root directory
 - [X] T002 [P] Setup development environment configuration in .devcontainer/devcontainer.json
-- [ ] T003 [P] Create main Bicep entry point file in main.bicep
+- [X] T003 [P] Create main Bicep entry point file in main.bicep
 - [ ] T004 [P] Setup Azure Verified Modules registry configuration in bicepconfig.json
 - [ ] T005 [P] Create PowerShell deployment scripts in scripts/Deploy-Foundation.ps1
 - [ ] T006 [P] Setup environment parameter files in environments/dev-parameters.json
