@@ -113,7 +113,8 @@ Operations teams need comprehensive monitoring and alerting capabilities to main
 - **FR-014**: System MUST provide emergency access procedures with temporary elevated access (maximum 4 hours, extensible by emergency response team), automated activation without human approval to prevent incident delays, and mandatory post-incident root cause analysis and resolution documentation
 - **FR-016**: System MUST maintain complete isolation from parent company Toyota Louwmans tenant to ensure FSI compliance separation
 - **FR-017**: System MUST implement automated audit data lifecycle management with secure archival after 7 years and automated retrieval capabilities for compliance investigations
-- **FR-016**: System MUST implement automated audit data lifecycle management with secure archival and retrieval capabilities
+- **FR-018**: System MUST implement configuration drift detection with automated baseline validation and manual approval required for remediation
+- **FR-019**: System MUST enforce data residency controls with explicit validation that all resources are deployed exclusively in EU regions (West Europe primary, North Europe secondary)
 
 ### Key Entities
 
@@ -138,6 +139,8 @@ Operations teams need comprehensive monitoring and alerting capabilities to main
 - **SC-006**: 99.9% uptime for identity and governance services during business hours (24x5) with planned maintenance windows to support business operations
 - **SC-007**: Resource provisioning requests are approved or denied within 30 minutes based on policy compliance (automated approval for low-risk changes like tagging and naming policies, manual approval required for security and compliance policies, cost impact >€1000 requires manual approval)
 - **SC-008**: Monthly compliance attestation process completes within 2 business days with automated evidence collection
+- **SC-009**: Configuration drift detection completes baseline validation within 15 minutes of resource changes with 100% coverage of critical infrastructure components
+- **SC-010**: Data residency validation confirms 100% of resources are deployed in approved EU regions (West Europe, North Europe) with automated compliance reporting
 
 ## Clarifications
 
@@ -158,3 +161,5 @@ Operations teams need comprehensive monitoring and alerting capabilities to main
 - IT operations team has defined standard monitoring and alerting procedures
 - Disaster recovery requirements follow standard FSI practices (assumed RTO of 4 hours, RPO of 1 hour for critical systems)
 - Data classification schemes follow standard financial services patterns (Public, Internal, Confidential, Restricted)
+- Configuration management baselines will be established for all critical infrastructure components with automated drift detection
+- EU data residency requirements are clearly defined and enforceable through Azure Policy governance

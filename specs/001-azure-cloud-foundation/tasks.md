@@ -7,13 +7,20 @@
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story with human interaction points at every step.
 
+**CONSTITUTIONAL REQUIREMENTS (NON-NEGOTIABLE)**:
+- **GitHub Flow Process**: EVERY task MUST be implemented on a separate branch from the feature branch using naming convention `001-azure-cloud-foundation-task##` (where ## is the task ID number)
+- **GitHub Issue Management**: Each task corresponds to a GitHub Issue that MUST be created before work begins and MUST be closed immediately when the task branch is merged to the feature branch
+- **Branch Strategy**: Task branches are created from feature branch `001-azure-cloud-foundation`, never from main branch
+- **Merge Requirements**: Task branches merge to feature branch only after passing all quality gates and peer review
+
 ## Format: `[ID] [P?] [Story] Description`
 
 - **[P]**: Can run in parallel (different files, no dependencies)  
 - **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)  
 - Include exact file paths in descriptions  
-- Each task takes maximum 8 hours to complete
+- Each task takes maximum 8 hours to complete (measured as: file creation + configuration + basic validation, excluding extensive testing)
 - Human approval required before starting each task
+- **GitHub Issue**: Each task requires GitHub Issue creation before work begins and closure upon task branch merge
 
 ## Path Conventions
 
@@ -32,7 +39,7 @@
 ### Core Setup Tasks
 
 - [X] T001 Create repository structure for Enterprise Scale Landing Zone in root directory
-- [ ] T002 [P] Setup development environment configuration in .devcontainer/devcontainer.json
+- [X] T002 [P] Setup development environment configuration in .devcontainer/devcontainer.json
 - [ ] T003 [P] Create main Bicep entry point file in main.bicep
 - [ ] T004 [P] Setup Azure Verified Modules registry configuration in bicepconfig.json
 - [ ] T005 [P] Create PowerShell deployment scripts in scripts/Deploy-Foundation.ps1
@@ -57,7 +64,7 @@
 - [ ] T011 Create management group hierarchy Bicep module in modules/management-groups/main.bicep
 - [ ] T012 [P] Create subscription vending Bicep module in modules/subscriptions/main.bicep
 - [ ] T013 [P] Create Azure region configuration in modules/regions/main.bicep
-- [ ] T014 Deploy root management group "Toyota Louwmans FS" using modules/management-groups/main.bicep
+- [ ] T014 Deploy root management group "Toyota Louwmans Financial Services" using modules/management-groups/main.bicep
 - [ ] T015 Create and deploy 8-level management group hierarchy per data model specifications
 
 **Test Tasks**:
@@ -125,6 +132,7 @@
 - [ ] T098 [US2] Create automated audit data archival and retrieval system in modules/governance/audit-lifecycle/main.bicep
 - [ ] T039 [US2] Configure policy violation alerting in modules/governance/compliance-alerts/main.bicep
 - [ ] T040 [US2] Deploy Azure Security Center compliance dashboard configuration
+- [ ] T099 [US2] Create configuration drift detection and baseline validation system in modules/governance/config-drift/main.bicep
 
 ### Resource Governance
 
@@ -136,6 +144,8 @@
 - [ ] T044 [US2] Test policy enforcement and violation blocking in scripts/Test-PolicyEnforcement.ps1
 - [ ] T045 [US2] Test compliance reporting and audit data collection in scripts/Test-ComplianceReporting.ps1
 - [ ] T046 [US2] Test violation alerting to compliance team in scripts/Test-ComplianceAlerts.ps1
+- [ ] T101 [US2] Test configuration drift detection and baseline validation in scripts/Test-ConfigurationDrift.ps1
+- [ ] T102 [US2] Test data residency validation and EU region compliance in scripts/Test-DataResidency.ps1
 
 ---
 
@@ -187,6 +197,7 @@
 - [ ] T061 [US4] Create spoke virtual network templates in modules/networking/spoke-vnet/main.bicep
 - [ ] T062 [US4] Deploy primary region network (West Europe) using hub-spoke pattern
 - [ ] T063 [US4] Deploy secondary region network (North Europe) for disaster recovery
+- [ ] T100 [US4] Create data residency validation policies ensuring 100% EU region compliance in modules/governance/data-residency/main.bicep
 
 ### Security Controls
 
@@ -316,20 +327,23 @@ Final Integration: T089-T096
 
 ## Summary
 
-- **Total Tasks**: 98 tasks across 8 phases
+- **Total Tasks**: 102 tasks across 8 phases (updated to include new requirements)
 - **User Story Distribution**:
   - Setup: 10 tasks (T001-T010)
   - Foundation: 7 tasks (T011-T017)
   - US1 (Identity): 15 tasks (T018-T031, T097)
-  - US2 (Governance): 16 tasks (T032-T046, T098)
+  - US2 (Governance): 20 tasks (T032-T046, T098-T102)
   - US3 (Cost Management): 13 tasks (T047-T059)
-  - US4 (Networking): 14 tasks (T060-T073)
+  - US4 (Networking): 15 tasks (T060-T073, T100)
   - US5 (Monitoring): 15 tasks (T074-T088)
   - Integration: 8 tasks (T089-T096)
+- **GitHub Workflow**: Every task requires GitHub Issue creation and task branch (001-azure-cloud-foundation-task##)
 - **Parallel Opportunities**: 47 tasks marked with [P] can run in parallel
-- **Independent Testing**: Each user story has 3-4 validation tasks requiring human approval
+- **Independent Testing**: Each user story has 3-6 validation tasks requiring human approval
 - **Human Approval Points**: Every task requires explicit approval before execution
-- **Task Duration**: All tasks designed for 8 hours or less completion time
+- **Task Duration**: All tasks designed for 8 hours or less completion time (creation + configuration + basic validation)
 - **MVP Delivery**: 2-3 weeks for core identity and governance foundation
 
 This task structure enables incremental delivery with human oversight at every step, ensuring proper validation and approval before proceeding to each component of the Azure Cloud Foundation.
+
+**Constitutional Compliance**: All tasks now comply with GitHub Flow Process and GitHub Issue Management requirements. Each task must follow the mandatory branch naming convention and issue closure workflow as specified in the constitution version 1.2.0.
