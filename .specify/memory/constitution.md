@@ -1,19 +1,16 @@
 <!--
   Sync Impact Report:
-  Version change: 1.0.0 → 1.1.0 (GitHub Flow mandate and branch governance expansion)
+  Version change: 1.1.0 → 1.2.0 (GitHub Issue closure enforcement)
   Modified principles: 
-    - DevSecOps Workflow → Enhanced with strict GitHub Flow requirements
-    - Governance → Added explicit task-level branching requirements
+    - GitHub Flow Process → Enhanced with mandatory GitHub Issue closure requirement
   Added sections: 
-    - GitHub Flow Process (mandatory for all tasks and issues)
-    - Branch Strategy Standards with enforcement rules
+    - GitHub Issue Management (mandatory closure upon task completion and branch merge)
   Removed sections: None
   Templates requiring updates: 
-    ✅ plan-template.md - Updated Constitution Check with GitHub Flow compliance requirements
-    ✅ tasks-template.md - Added GitHub Flow requirements and branching instructions
+    ✅ tasks-template.md - Updated GitHub Flow requirements to include Issue closure mandate
+    ✅ plan-template.md - Constitution Check includes Issue closure compliance (no changes needed)
     ✅ spec-template.md - User scenarios align with iterative delivery principle (no changes needed)
-    ✅ checklist-template.md - No changes needed for branching strategy
-  Follow-up TODOs: None - all templates updated to enforce GitHub Flow requirements
+  Follow-up TODOs: None - GitHub Issue closure requirement now enforced in constitution and templates
 -->
 
 # Cloud Quick Start Infrastructure Constitution
@@ -81,9 +78,22 @@ EVERY single task or GitHub Issue MUST be implemented on a separate branch creat
 3. **Implementation**: Complete single task/issue on task branch with proper testing
 4. **Review**: Submit pull request from task branch to feature branch (never directly to main)
 5. **Merge**: Only merge to feature branch after passing all quality gates and reviews
-6. **Integration**: Feature branch merges to main only when entire feature is complete
+6. **Issue Closure**: ALWAYS close the related GitHub Issue when task is completed and branch is merged into the feature branch
+7. **Integration**: Feature branch merges to main only when entire feature is complete
 
 NO exceptions allowed. Manual changes, direct commits to feature branches, or skipping task-level branches violate this constitution and require architect approval with written justification.
+
+### GitHub Issue Management (NON-NEGOTIABLE)
+Every task corresponds to a GitHub Issue that MUST be properly tracked and closed. The mandatory issue lifecycle is:
+
+- **Creation**: GitHub Issue created for each task before work begins
+- **Assignment**: Issue assigned to developer implementing the task
+- **Linking**: Task branch name references the issue number for traceability
+- **Progress Updates**: Issue status updated as work progresses
+- **Closure**: Issue MUST be closed immediately when task branch is merged to feature branch
+- **Verification**: No task branches can be merged without corresponding issue closure
+
+This ensures complete audit trail, proper task tracking, and accountability for all work performed.
 
 ### Branch Strategy Standards
 - **Feature Branch Naming**: `###-feature-name` (where ### is 3-digit issue/spec number)
@@ -119,8 +129,10 @@ This constitution supersedes all other development practices and standards. All 
 
 **GitHub Flow Enforcement**: Every pull request MUST demonstrate compliance with the mandatory GitHub Flow process. Task-level branching is non-negotiable - violations result in immediate PR rejection. All AI assistants and development tools must enforce these branching requirements in their guidance and code generation.
 
+**GitHub Issue Closure Enforcement**: Every task completion MUST include closing the related GitHub Issue when the branch is merged to the feature branch. Pull requests without proper issue closure will be rejected. This ensures complete task lifecycle management and audit trail compliance.
+
 Amendment process requires proposal documentation, impact assessment, stakeholder review, and version increment following semantic versioning (MAJOR for principle changes, MINOR for new sections, PATCH for clarifications).
 
 All pull requests must include constitution compliance verification. Complexity that violates the "Small Iterations" principle must be justified with clear decomposition strategy. Use Azure Well-Architected Review Tool for runtime architecture guidance and regular compliance validation.
 
-**Version**: 1.1.0 | **Ratified**: 2025-11-18 | **Last Amended**: 2025-11-19
+**Version**: 1.2.0 | **Ratified**: 2025-11-18 | **Last Amended**: 2025-11-19
