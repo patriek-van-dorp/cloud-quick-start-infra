@@ -31,7 +31,14 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+**GitHub Flow Compliance**:
+- ✅ Feature branch `[###-feature-name]` created from main/default branch
+- ✅ Task-level branching strategy documented (each task gets separate branch from feature branch)
+- ✅ Branch protection rules planned for feature and main branches
+- ✅ Pull request workflow defined (task branches → feature branch → main)
+- ✅ No direct commits to feature branch planned (all via task branch PRs)
+
+[Additional gates determined based on constitution file]
 
 ## Project Structure
 
