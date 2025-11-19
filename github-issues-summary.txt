@@ -1,0 +1,107 @@
+Issue #2: T001 - Create repository structure for Enterprise Scale Landing Zone in root directory | Labels: phase-1-setup
+Issue #3: T002 - Setup development environment configuration in .devcontainer/devcontainer.json [PARALLEL] | Labels: phase-1-setup
+Issue #4: T003 - Create main Bicep entry point file in main.bicep [PARALLEL] | Labels: phase-1-setup
+Issue #5: T004 - Setup Azure Verified Modules registry configuration in bicepconfig.json [PARALLEL] | Labels: phase-1-setup
+Issue #6: T005 - Create PowerShell deployment scripts in scripts/Deploy-Foundation.ps1 [PARALLEL] | Labels: phase-1-setup
+Issue #7: T006 - Setup environment parameter files in environments/dev-parameters.json [PARALLEL] | Labels: phase-1-setup
+Issue #8: T007 - Setup environment parameter files in environments/prod-parameters.json [PARALLEL] | Labels: phase-1-setup
+Issue #9: T008 - Create GitHub Actions workflow for CI/CD in .github/workflows/deploy-foundation.yml | Labels: phase-1-setup
+Issue #10: T009 - Create validation script for repository structure in scripts/Test-RepoStructure.ps1 | Labels: phase-1-setup
+Issue #11: T010 - Validate development environment setup and tool versions in scripts/Test-Prerequisites.ps1 | Labels: phase-1-setup
+Issue #12: T011 - Create management group hierarchy Bicep module in modules/management-groups/main.bicep | Labels: phase-2-foundation
+Issue #13: T012 - Create subscription vending Bicep module in modules/subscriptions/main.bicep [PARALLEL] | Labels: phase-2-foundation
+Issue #14: T013 - Create Azure region configuration in modules/regions/main.bicep [PARALLEL] | Labels: phase-2-foundation
+Issue #15: T014 - Deploy root management group "Toyota Louwmans FS" using modules/management-groups/main.bicep | Labels: phase-2-foundation
+Issue #16: T015 - Create and deploy 8-level management group hierarchy per data model specifications | Labels: phase-2-foundation
+Issue #17: T016 - Test management group hierarchy deployment and verify 8 levels in scripts/Test-ManagementGroups.ps1 | Labels: phase-2-foundation
+Issue #18: T017 - Validate subscription placement in correct management groups in scripts/Test-SubscriptionPlacement.ps1 | Labels: phase-2-foundation
+Issue #19: T018 - [US1] Create Microsoft Entra ID configuration Bicep module in modules/identity/entra-id/main.bicep [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #20: T019 - [US1] Create RBAC role definitions Bicep module in modules/identity/rbac/custom-roles.bicep [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #21: T020 - [US1] Create conditional access policies Bicep template in modules/identity/conditional-access/main.bicep [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #22: T021 - [US1] Deploy Microsoft Entra ID directory configuration using modules/identity/entra-id/main.bicep [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #23: T022 - [US1] Create IT Administrator role assignments in modules/identity/rbac/it-admin-roles.bicep [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #24: T023 - [US1] Create Finance team role assignments in modules/identity/rbac/finance-roles.bicep [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #25: T024 - [US1] Create Compliance officer role assignments in modules/identity/rbac/compliance-roles.bicep [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #26: T025 - [US1] Deploy custom RBAC roles for FSI compliance in modules/identity/rbac/main.bicep [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #27: T026 - [US1] Configure corporate directory integration in modules/identity/directory-integration/main.bicep [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #28: T027 - [US1] Deploy conditional access policies for financial services compliance [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #29: T028 - [US1] Setup emergency access accounts with break-glass procedures in modules/identity/emergency-access/main.bicep [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #30: T029 - [US1] Test user authentication with corporate credentials in scripts/Test-Authentication.ps1 [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #31: T030 - [US1] Test role assignments and permission verification in scripts/Test-RBAC.ps1 [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #32: T031 - [US1] Test emergency access scenarios and break-glass procedures in scripts/Test-EmergencyAccess.ps1 [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #33: T097 - [US1] Test emergency access 4-hour time limits and automatic extension workflows in scripts/Test-EmergencyAccessTimeLimits.ps1 [PARALLEL] | Labels: phase-3-identity, priority-p1
+Issue #34: T032 - [US2] Create FSI compliance policy set in modules/governance/policies/fsi-compliance.bicep [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #35: T033 - [US2] Create SOX compliance policies in modules/governance/policies/sox-compliance.bicep [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #36: T034 - [US2] Create PCI DSS compliance policies in modules/governance/policies/pci-compliance.bicep [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #37: T035 - [US2] Create GDPR compliance policies in modules/governance/policies/gdpr-compliance.bicep [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #38: T036 - [US2] Deploy policy assignments to management groups using modules/governance/policy-assignments/main.bicep [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #39: T037 - [US2] Create compliance dashboard configuration in modules/governance/compliance-dashboard/main.bicep [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #40: T038 - [US2] Setup 7-year audit log retention in modules/governance/audit-retention/main.bicep [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #41: T098 - [US2] Create automated audit data archival and retrieval system in modules/governance/audit-lifecycle/main.bicep [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #42: T039 - [US2] Configure policy violation alerting in modules/governance/compliance-alerts/main.bicep [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #43: T040 - [US2] Deploy Azure Security Center compliance dashboard configuration [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #44: T041 - [US2] Create resource naming convention policies in modules/governance/naming/naming-policies.bicep [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #45: T042 - [US2] Create resource tagging policies for compliance in modules/governance/tagging/compliance-tags.bicep [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #46: T043 - [US2] Deploy governance policies across all management groups [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #47: T044 - [US2] Test policy enforcement and violation blocking in scripts/Test-PolicyEnforcement.ps1 [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #48: T045 - [US2] Test compliance reporting and audit data collection in scripts/Test-ComplianceReporting.ps1 [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #49: T046 - [US2] Test violation alerting to compliance team in scripts/Test-ComplianceAlerts.ps1 [PARALLEL] | Labels: phase-4-governance, priority-p2
+Issue #50: T047 - [US3] Create hierarchical budget structure in modules/cost-management/budgets/hierarchy-budgets.bicep [PARALLEL] | Labels: phase-5-cost-mgmt, priority-p3
+Issue #51: T048 - [US3] Create department-specific budgets in modules/cost-management/budgets/department-budgets.bicep [PARALLEL] | Labels: phase-5-cost-mgmt, priority-p3
+Issue #52: T049 - [US3] Create project-based cost tracking in modules/cost-management/budgets/project-budgets.bicep [PARALLEL] | Labels: phase-5-cost-mgmt, priority-p3
+Issue #53: T050 - [US3] Deploy budget alerts and notification rules using modules/cost-management/budget-alerts/main.bicep [PARALLEL] | Labels: phase-5-cost-mgmt, priority-p3
+Issue #54: T051 - [US3] Create resource right-sizing policies in modules/cost-management/optimization/rightsizing-policies.bicep [PARALLEL] | Labels: phase-5-cost-mgmt, priority-p3
+Issue #55: T052 - [US3] Setup automated cost reporting in modules/cost-management/reporting/cost-reports.bicep [PARALLEL] | Labels: phase-5-cost-mgmt, priority-p3
+Issue #56: T053 - [US3] Configure cost allocation and chargeback model in modules/cost-management/chargeback/main.bicep [PARALLEL] | Labels: phase-5-cost-mgmt, priority-p3
+Issue #57: T054 - [US3] Create cost center tagging automation in modules/governance/tagging/cost-center-tags.bicep [PARALLEL] | Labels: phase-5-cost-mgmt, priority-p3
+Issue #58: T055 - [US3] Create project tagging automation in modules/governance/tagging/project-tags.bicep [PARALLEL] | Labels: phase-5-cost-mgmt, priority-p3
+Issue #59: T056 - [US3] Deploy automated tagging policies for cost tracking [PARALLEL] | Labels: phase-5-cost-mgmt, priority-p3
+Issue #60: T057 - [US3] Test budget alert notifications to finance teams in scripts/Test-BudgetAlerts.ps1 [PARALLEL] | Labels: phase-5-cost-mgmt, priority-p3
+Issue #61: T058 - [US3] Test automated resource tagging for cost allocation in scripts/Test-CostTagging.ps1 [PARALLEL] | Labels: phase-5-cost-mgmt, priority-p3
+Issue #62: T059 - [US3] Test cost reporting and optimization recommendations in scripts/Test-CostOptimization.ps1 [PARALLEL] | Labels: phase-5-cost-mgmt, priority-p3
+Issue #63: T060 - [US4] Create hub virtual network configuration in modules/networking/hub-vnet/main.bicep [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #64: T061 - [US4] Create spoke virtual network templates in modules/networking/spoke-vnet/main.bicep [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #65: T062 - [US4] Deploy primary region network (West Europe) using hub-spoke pattern [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #66: T063 - [US4] Deploy secondary region network (North Europe) for disaster recovery [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #67: T064 - [US4] Create network security group rules in modules/networking/security/nsg-rules.bicep [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #68: T065 - [US4] Create Azure Firewall configuration in modules/networking/firewall/main.bicep [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #69: T066 - [US4] Create network access control policies in modules/networking/security/access-policies.bicep [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #70: T067 - [US4] Deploy Azure Firewall with FSI-compliant security rules [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #71: T068 - [US4] Configure secure connectivity for financial workloads in modules/networking/connectivity/financial-workloads.bicep [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #72: T069 - [US4] Setup network monitoring and flow logs in modules/networking/monitoring/network-monitoring.bicep [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #73: T070 - [US4] Deploy network segmentation for compliance isolation [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #74: T071 - [US4] Test network segmentation and access controls in scripts/Test-NetworkSecurity.ps1 [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #75: T072 - [US4] Test firewall rules and traffic monitoring in scripts/Test-FirewallRules.ps1 [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #76: T073 - [US4] Test cross-region connectivity and failover in scripts/Test-NetworkConnectivity.ps1 [PARALLEL] | Labels: phase-6-networking, priority-p4
+Issue #77: T074 - [US5] Create Log Analytics workspace configuration in modules/monitoring/log-analytics/main.bicep [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #78: T075 - [US5] Deploy Azure Monitor for comprehensive telemetry collection [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #79: T076 - [US5] Configure 7-year log retention for audit compliance in modules/monitoring/retention/audit-retention.bicep [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #80: T077 - [US5] Create Microsoft Defender for Cloud configuration in modules/security/defender/main.bicep [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #81: T078 - [US5] Create Azure Sentinel security monitoring in modules/security/sentinel/main.bicep [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #82: T079 - [US5] Deploy security monitoring and threat detection capabilities [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #83: T080 - [US5] Create operational health dashboard in modules/monitoring/dashboards/operational-health.bicep [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #84: T081 - [US5] Create compliance monitoring dashboard in modules/monitoring/dashboards/compliance-dashboard.bicep [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #85: T082 - [US5] Create cost optimization dashboard in modules/monitoring/dashboards/cost-dashboard.bicep [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #86: T083 - [US5] Deploy automated alerting for critical system thresholds [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #87: T084 - [US5] Configure alert rules for 99.9% uptime SLA in modules/monitoring/alerts/sla-alerts.bicep [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #88: T085 - [US5] Setup notification groups for different operational scenarios in modules/monitoring/notifications/main.bicep [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #89: T086 - [US5] Test monitoring data collection and dashboard visibility in scripts/Test-Monitoring.ps1 [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #90: T087 - [US5] Test alert notifications for critical thresholds in scripts/Test-AlertNotifications.ps1 [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #91: T088 - [US5] Test security event detection and response in scripts/Test-SecurityMonitoring.ps1 [PARALLEL] | Labels: phase-7-monitoring, priority-p5
+Issue #92: T089 - Create end-to-end integration test suite in scripts/Test-EndToEnd.ps1 | Labels: phase-8-integration
+Issue #93: T090 - Create disaster recovery validation in scripts/Test-DisasterRecovery.ps1 [PARALLEL] | Labels: phase-8-integration
+Issue #94: T091 - Create compliance validation test suite in scripts/Test-ComplianceValidation.ps1 [PARALLEL] | Labels: phase-8-integration
+Issue #95: T092 - Create operational runbook documentation in docs/operations/runbook.md [PARALLEL] | Labels: phase-8-integration
+Issue #96: T093 - Create incident response procedures in docs/security/incident-response.md [PARALLEL] | Labels: phase-8-integration
+Issue #97: T094 - Create final deployment guide in docs/deployment/production-deployment.md | Labels: phase-8-integration
+Issue #98: T095 - Create production environment validation in scripts/Test-ProductionReadiness.ps1 | Labels: phase-8-integration
+Issue #99: T096 - Final security review and sign-off checklist in docs/security/security-review-checklist.md | Labels: phase-8-integration
+Issue #100: T099 [US2] Create configuration drift detection and baseline validation system | Labels: phase-4-governance, priority-p2
+Issue #101: T100 [US4] Create data residency validation policies ensuring 100% EU region compliance | Labels: phase-6-networking, priority-p4
+Issue #102: T101 [US2] Test configuration drift detection and baseline validation | Labels: phase-4-governance, priority-p2
+Issue #103: T102 [US2] Test data residency validation and EU region compliance | Labels: phase-4-governance, priority-p2
+Issue #108: T103 - [Integration] Create disaster recovery and backup capabilities implementation | Labels: enhancement, phase-8-integration
+Issue #109: T104 - [Integration] Create cross-region backup and recovery automation | Labels: enhancement, phase-8-integration
+Issue #110: T105 - [Integration] Create tenant isolation validation and monitoring | Labels: enhancement, phase-8-integration
+Issue #111: T106 - [US2] Create advanced compliance automation and reporting system | Labels: enhancement, phase-4-governance, priority-p2
+Issue #112: T107 - [US2] Create governance policy lifecycle management system | Labels: enhancement, phase-4-governance, priority-p2

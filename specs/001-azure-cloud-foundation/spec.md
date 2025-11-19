@@ -102,21 +102,23 @@ Operations teams need comprehensive monitoring and alerting capabilities to main
 - **FR-003**: System MUST implement financial services compliance policies automatically across all resources
 - **FR-004**: System MUST provide comprehensive audit logging for all administrative and user actions with 7-year retention and automated archival
 - **FR-005**: System MUST monitor and alert on policy violations and security events in real-time
-- **FR-006**: System MUST enforce cost management controls with automated budget enforcement
-- **FR-007**: System MUST provide network segmentation and security controls appropriate for financial data
-- **FR-008**: System MUST maintain complete resource inventory with automated tagging and classification
+- **FR-006**: System MUST enforce cost management controls with automated budget enforcement including spending alerts at 50%, 80%, and 95% thresholds, automated resource shutdown at 100% budget consumption for non-production environments, and daily cost variance reporting with €100 threshold for investigation
+- **FR-007**: System MUST provide network segmentation and security controls for financial data including mandatory network security groups on all subnets, Azure Firewall with application-level filtering, network traffic monitoring with 5-minute alert intervals, and zero-trust network access validation
+- **FR-008**: System MUST maintain complete resource inventory with automated tagging enforcement (mandatory tags: CostCenter, Environment, DataClassification, Owner), resource classification validation within 5 minutes of deployment, and weekly inventory reconciliation reports with 100% resource coverage
 - **FR-009**: System MUST provide disaster recovery and backup capabilities for critical configurations
 - **FR-010**: System MUST support secure connectivity patterns for future workload deployment
 - **FR-011**: System MUST implement data residency controls to meet European Union (GDPR compliance) requirements with all data stored exclusively in EU regions (West Europe primary, North Europe secondary)
 - **FR-012**: System MUST provide privileged access management with multi-factor authentication and conditional access policies based on risk factors
-- **FR-013**: System MUST maintain configuration baselines and detect configuration drift with manual approval required for remediation
-- **FR-014**: System MUST provide emergency access procedures with temporary elevated access (maximum 4 hours, extensible by emergency response team), automated activation without human approval to prevent incident delays, and mandatory post-incident root cause analysis and resolution documentation
-- **FR-016**: System MUST maintain complete isolation from parent company Toyota Louwmans tenant to ensure FSI compliance separation
-- **FR-017**: System MUST implement automated audit data lifecycle management with secure archival after 7 years and automated retrieval capabilities for compliance investigations
-- **FR-018**: System MUST implement configuration drift detection with automated baseline validation and manual approval required for remediation
-- **FR-019**: System MUST enforce data residency controls with explicit validation that all resources are deployed exclusively in EU regions (West Europe primary, North Europe secondary)
-- **FR-020**: System MUST implement GitHub Issue Management with mandatory issue creation before task work begins and automatic closure upon task branch merge to feature branch
-- **FR-021**: System MUST provide automated branch synchronization to GitHub repository and automated pull request creation upon task completion with user approval
+- **FR-013**: System MUST maintain configuration baselines and detect configuration drift with automated baseline validation within 15 minutes of resource changes, 100% coverage of critical infrastructure components, and manual approval workflow requiring architect sign-off for remediation of security and compliance policies
+- **FR-014**: System MUST provide emergency access procedures with temporary elevated access (maximum 4 hours, extensible once by emergency response team for additional 4 hours with documented business justification), automated activation without human approval to prevent incident delays, and mandatory post-incident root cause analysis and resolution documentation within 24 hours
+- **FR-015**: System MUST implement disaster recovery and backup capabilities with RTO of 4 hours and RPO of 1 hour for critical configurations, automated failover between West Europe and North Europe regions, and quarterly disaster recovery testing with documented validation results
+- **FR-016**: System MUST maintain complete isolation from parent company Toyota Louwmans tenant with automated validation ensuring zero connectivity, shared resource detection, and quarterly isolation compliance audits
+- **FR-017**: System MUST implement automated audit data lifecycle management with secure archival after 7 years, automated retrieval capabilities for compliance investigations within 4 hours, and tamper-evident audit trail integrity validation
+- **FR-014**: System MUST provide emergency access procedures with temporary elevated access (maximum 4 hours, extensible once by emergency response team for additional 4 hours with documented business justification), automated activation without human approval to prevent incident delays, and mandatory post-incident root cause analysis and resolution documentation within 24 hours
+- **FR-015**: System MUST implement disaster recovery and backup capabilities with RTO of 4 hours and RPO of 1 hour for critical configurations, automated failover between West Europe and North Europe regions, and quarterly disaster recovery testing with documented validation results
+- **FR-016**: System MUST maintain complete isolation from parent company Toyota Louwmans tenant with automated validation ensuring zero connectivity, shared resource detection, and quarterly isolation compliance audits
+- **FR-017**: System MUST implement automated audit data lifecycle management with secure archival after 7 years, automated retrieval capabilities for compliance investigations within 4 hours, and tamper-evident audit trail integrity validation
+- **FR-019**: System MUST enforce data residency controls with explicit validation that all resources are deployed exclusively in EU regions (West Europe primary, North Europe secondary) and automated compliance reporting with 100% resource coverage validation within 15 minutes of deployment
 
 ### Key Entities
 
@@ -139,7 +141,7 @@ Operations teams need comprehensive monitoring and alerting capabilities to main
 - **SC-004**: Cost variance from approved budgets is visible within 24 hours of resource deployment
 - **SC-005**: Audit reports can be generated covering 100% of administrative actions within 1 hour
 - **SC-006**: 99.9% uptime for identity and governance services during business hours (24x5) with planned maintenance windows to support business operations
-- **SC-007**: Resource provisioning requests are approved or denied within 30 minutes based on policy compliance (automated approval for low-risk changes like tagging and naming policies, manual approval required for security and compliance policies, cost impact >€1000 requires manual approval)
+- **SC-007**: Resource provisioning requests are approved or denied within 30 minutes based on policy compliance with specific risk categories: automated approval for low-risk changes (resource tagging, naming convention updates, non-privileged role assignments), manual approval required for medium-risk changes (security group rules, network configurations, privileged access assignments), and architect approval required for high-risk changes (policy modifications, compliance controls, cost impact >€1000, cross-tenant configurations)
 - **SC-008**: Monthly compliance attestation process completes within 2 business days with automated evidence collection
 - **SC-009**: Configuration drift detection completes baseline validation within 15 minutes of resource changes with 100% coverage of critical infrastructure components
 - **SC-010**: Data residency validation confirms 100% of resources are deployed in approved EU regions (West Europe, North Europe) with automated compliance reporting

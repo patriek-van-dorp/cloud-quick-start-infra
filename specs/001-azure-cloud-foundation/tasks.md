@@ -273,6 +273,9 @@
 - [ ] T089 Create end-to-end integration test suite in scripts/Test-EndToEnd.ps1
 - [ ] T090 [P] Create disaster recovery validation in scripts/Test-DisasterRecovery.ps1
 - [ ] T091 [P] Create compliance validation test suite in scripts/Test-ComplianceValidation.ps1
+- [ ] T103 [P] Create disaster recovery and backup capabilities implementation in modules/shared-services/disaster-recovery/main.bicep
+- [ ] T104 [P] Create cross-region backup and recovery automation in scripts/powershell/disaster-recovery/Invoke-DisasterRecovery.ps1
+- [ ] T105 Create tenant isolation validation and monitoring in modules/governance/tenant-isolation/main.bicep
 
 ### Documentation and Handover
 
@@ -331,16 +334,16 @@ Final Integration: T089-T096
 
 ## Summary
 
-- **Total Tasks**: 102 tasks across 8 phases (updated to include new requirements)
+- **Total Tasks**: 107 tasks across 8 phases (updated to include disaster recovery and tenant isolation requirements)
 - **User Story Distribution**:
   - Setup: 10 tasks (T001-T010)
-  - Foundation: 7 tasks (T011-T017)
+  - Foundation: 7 tasks (T011-T017)  
   - US1 (Identity): 15 tasks (T018-T031, T097)
-  - US2 (Governance): 20 tasks (T032-T046, T098-T102)
+  - US2 (Governance): 22 tasks (T032-T046, T098-T102, T106-T107)
   - US3 (Cost Management): 13 tasks (T047-T059)
   - US4 (Networking): 15 tasks (T060-T073, T100)
   - US5 (Monitoring): 15 tasks (T074-T088)
-  - Integration: 8 tasks (T089-T096)
+  - Integration: 11 tasks (T089-T096, T103-T105)
 - **GitHub Workflow**: Every task requires GitHub Issue creation and task branch (001-azure-cloud-foundation-task##)
 - **Parallel Opportunities**: 47 tasks marked with [P] can run in parallel
 - **Independent Testing**: Each user story has 3-6 validation tasks requiring human approval
