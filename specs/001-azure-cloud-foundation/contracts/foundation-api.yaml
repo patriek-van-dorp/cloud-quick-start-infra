@@ -1,0 +1,822 @@
+openapi: 3.0.3
+info:
+  title: Azure Cloud Foundation Management API
+  description: |
+    API contract for managing Azure Cloud Foundation infrastructure for Toyota Louwmans Financial Services.
+    Provides endpoints for identity management, governance, cost management, and security operations.
+  version: 1.0.0
+  contact:
+    name: Cloud Foundation Team
+    email: cloudfoundation@toyotalouwmansfs.nl
+  license:
+    name: Private - Toyota Louwmans Financial Services
+    
+servers:
+  - url: https://api.cloudfoundation.toyotalouwmansfs.nl/v1
+    description: Production API Server
+  - url: https://api-staging.cloudfoundation.toyotalouwmansfs.nl/v1
+    description: Staging API Server
+
+security:
+  - AzureAD:
+      - "CloudFoundation.Read"
+      - "CloudFoundation.Write"
+      - "CloudFoundation.Admin"
+
+paths:
+  # Identity Management
+  /identity/principals:
+    get:
+      summary: List identity principals
+      description: Retrieve paginated list of identity principals with optional filtering
+      tags: [Identity Management]
+      parameters:
+        - name: principalType
+          in: query
+          schema:
+            type: string
+            enum: [USER, GROUP, SERVICE_PRINCIPAL, MANAGED_IDENTITY]
+        - name: department
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        '200':
+          description: Successfully retrieved identity principals
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IdentityPrincipal'
+                  pagination:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    
+    post:
+      summary: Create identity principal
+      description: Create new identity principal with appropriate permissions and compliance validation
+      tags: [Identity Management]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIdentityPrincipalRequest'
+      responses:
+        '201':
+          description: Identity principal created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityPrincipal'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /identity/principals/{principalId}/roles:
+    get:
+      summary: Get principal role assignments
+      description: Retrieve all role assignments for a specific principal
+      tags: [Identity Management]
+      parameters:
+        - name: principalId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successfully retrieved role assignments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoleAssignment'
+    
+    post:
+      summary: Assign role to principal
+      description: Create new role assignment for principal with compliance validation
+      tags: [Identity Management]
+      parameters:
+        - name: principalId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRoleAssignmentRequest'
+      responses:
+        '201':
+          description: Role assignment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleAssignment'
+
+  # Governance and Policy Management
+  /governance/policies:
+    get:
+      summary: List policy assignments
+      description: Retrieve policy assignments with compliance status
+      tags: [Governance]
+      parameters:
+        - name: scope
+          in: query
+          schema:
+            type: string
+            enum: [MANAGEMENT_GROUP, SUBSCRIPTION, RESOURCE_GROUP]
+        - name: complianceState
+          in: query
+          schema:
+            type: string
+            enum: [COMPLIANT, NON_COMPLIANT, UNKNOWN]
+        - name: category
+          in: query
+          schema:
+            type: string
+            enum: [SECURITY, COMPLIANCE, COST, OPERATIONAL]
+      responses:
+        '200':
+          description: Successfully retrieved policy assignments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PolicyAssignment'
+
+    post:
+      summary: Create policy assignment
+      description: Create new policy assignment with impact assessment
+      tags: [Governance]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePolicyAssignmentRequest'
+      responses:
+        '201':
+          description: Policy assignment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyAssignment'
+
+  /governance/policies/{policyId}/compliance:
+    get:
+      summary: Get policy compliance report
+      description: Retrieve detailed compliance report for specific policy
+      tags: [Governance]
+      parameters:
+        - name: policyId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successfully retrieved compliance report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplianceReport'
+
+  # Cost Management
+  /cost/budgets:
+    get:
+      summary: List cost budgets
+      description: Retrieve cost budgets with current utilization
+      tags: [Cost Management]
+      parameters:
+        - name: scope
+          in: query
+          schema:
+            type: string
+            enum: [MANAGEMENT_GROUP, SUBSCRIPTION, RESOURCE_GROUP]
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [UNDER_BUDGET, WARNING, EXCEEDED]
+      responses:
+        '200':
+          description: Successfully retrieved budgets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Budget'
+
+    post:
+      summary: Create cost budget
+      description: Create new budget with alerts and enforcement policies
+      tags: [Cost Management]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBudgetRequest'
+      responses:
+        '201':
+          description: Budget created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Budget'
+
+  /cost/reports/chargeback:
+    get:
+      summary: Generate chargeback report
+      description: Generate cost allocation report by cost center
+      tags: [Cost Management]
+      parameters:
+        - name: period
+          in: query
+          required: true
+          schema:
+            type: string
+            pattern: '^20\d{2}-(0[1-9]|1[0-2])$'
+            example: "2025-11"
+        - name: costCenterId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully generated chargeback report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargebackReport'
+            text/csv:
+              schema:
+                type: string
+
+  # Security and Monitoring
+  /security/events:
+    get:
+      summary: List security events
+      description: Retrieve security events with filtering and search
+      tags: [Security]
+      parameters:
+        - name: eventType
+          in: query
+          schema:
+            type: string
+            enum: [LOGIN, POLICY_VIOLATION, RESOURCE_CHANGE, PRIVILEGED_ACCESS, THREAT_DETECTED]
+        - name: severity
+          in: query
+          schema:
+            type: string
+            enum: [LOW, MEDIUM, HIGH, CRITICAL]
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [OPEN, INVESTIGATING, RESOLVED, CLOSED]
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Successfully retrieved security events
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SecurityEvent'
+                  pagination:
+                    $ref: '#/components/schemas/PaginationMeta'
+
+  /security/events/{eventId}:
+    get:
+      summary: Get security event details
+      description: Retrieve detailed information about specific security event
+      tags: [Security]
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successfully retrieved security event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityEventDetail'
+
+    patch:
+      summary: Update security event status
+      description: Update security event status and assignment
+      tags: [Security]
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSecurityEventRequest'
+      responses:
+        '200':
+          description: Security event updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityEvent'
+
+  # Emergency Access
+  /identity/emergency-access:
+    post:
+      summary: Request emergency access
+      description: Request temporary elevated access for security incidents
+      tags: [Identity Management]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmergencyAccessRequest'
+      responses:
+        '201':
+          description: Emergency access request submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmergencyAccessResponse'
+
+components:
+  securitySchemes:
+    AzureAD:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize
+          tokenUrl: https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token
+          scopes:
+            CloudFoundation.Read: Read access to cloud foundation resources
+            CloudFoundation.Write: Write access to cloud foundation resources
+            CloudFoundation.Admin: Administrative access to cloud foundation
+
+  schemas:
+    IdentityPrincipal:
+      type: object
+      properties:
+        principalId:
+          type: string
+          format: uuid
+        principalType:
+          type: string
+          enum: [USER, GROUP, SERVICE_PRINCIPAL, MANAGED_IDENTITY]
+        displayName:
+          type: string
+        userPrincipalName:
+          type: string
+        department:
+          type: string
+        securityClearance:
+          type: string
+          enum: [PUBLIC, INTERNAL, CONFIDENTIAL, RESTRICTED]
+        mfaEnabled:
+          type: boolean
+        lastLoginDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [PENDING_APPROVAL, ACTIVE, SUSPENDED, DELETED]
+
+    CreateIdentityPrincipalRequest:
+      type: object
+      required: [principalType, displayName, department, securityClearance]
+      properties:
+        principalType:
+          type: string
+          enum: [USER, GROUP, SERVICE_PRINCIPAL]
+        displayName:
+          type: string
+        userPrincipalName:
+          type: string
+        department:
+          type: string
+        securityClearance:
+          type: string
+          enum: [PUBLIC, INTERNAL, CONFIDENTIAL, RESTRICTED]
+        justification:
+          type: string
+
+    RoleAssignment:
+      type: object
+      properties:
+        assignmentId:
+          type: string
+          format: uuid
+        principalId:
+          type: string
+          format: uuid
+        roleDefinitionId:
+          type: string
+        scope:
+          type: string
+        condition:
+          type: string
+        createdBy:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+
+    CreateRoleAssignmentRequest:
+      type: object
+      required: [roleDefinitionId, scope, justification]
+      properties:
+        roleDefinitionId:
+          type: string
+        scope:
+          type: string
+        condition:
+          type: string
+        justification:
+          type: string
+
+    PolicyAssignment:
+      type: object
+      properties:
+        policyId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        displayName:
+          type: string
+        policyType:
+          type: string
+          enum: [BUILTIN, CUSTOM, INITIATIVE]
+        category:
+          type: string
+          enum: [SECURITY, COMPLIANCE, COST, OPERATIONAL]
+        effect:
+          type: string
+          enum: [DENY, AUDIT, APPEND, MODIFY, DISABLED]
+        scope:
+          type: string
+        complianceState:
+          type: string
+          enum: [COMPLIANT, NON_COMPLIANT, UNKNOWN]
+        lastEvaluation:
+          type: string
+          format: date-time
+
+    CreatePolicyAssignmentRequest:
+      type: object
+      required: [policyDefinitionId, scope, justification]
+      properties:
+        policyDefinitionId:
+          type: string
+        name:
+          type: string
+          maxLength: 24
+        scope:
+          type: string
+        parameters:
+          type: object
+        justification:
+          type: string
+        impactAssessment:
+          type: string
+
+    ComplianceReport:
+      type: object
+      properties:
+        policyId:
+          type: string
+          format: uuid
+        totalResources:
+          type: integer
+        compliantResources:
+          type: integer
+        nonCompliantResources:
+          type: integer
+        compliancePercentage:
+          type: number
+          format: float
+        violations:
+          type: array
+          items:
+            type: object
+            properties:
+              resourceId:
+                type: string
+              violationType:
+                type: string
+              severity:
+                type: string
+              details:
+                type: string
+
+    Budget:
+      type: object
+      properties:
+        budgetId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        scope:
+          type: string
+        amount:
+          type: number
+          format: float
+        currentSpend:
+          type: number
+          format: float
+        utilizationPercentage:
+          type: number
+          format: float
+        status:
+          type: string
+          enum: [UNDER_BUDGET, WARNING, EXCEEDED]
+        alerts:
+          type: array
+          items:
+            type: object
+            properties:
+              threshold:
+                type: integer
+              contactEmails:
+                type: array
+                items:
+                  type: string
+                  format: email
+
+    CreateBudgetRequest:
+      type: object
+      required: [name, scope, amount, alerts]
+      properties:
+        name:
+          type: string
+        scope:
+          type: string
+        amount:
+          type: number
+          format: float
+        timeGrain:
+          type: string
+          enum: [MONTHLY, QUARTERLY, ANNUALLY]
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        alerts:
+          type: array
+          items:
+            type: object
+            properties:
+              threshold:
+                type: integer
+                minimum: 1
+                maximum: 100
+              contactEmails:
+                type: array
+                items:
+                  type: string
+                  format: email
+
+    ChargebackReport:
+      type: object
+      properties:
+        period:
+          type: string
+        totalCost:
+          type: number
+          format: float
+        costCenters:
+          type: array
+          items:
+            type: object
+            properties:
+              costCenterId:
+                type: string
+              name:
+                type: string
+              totalCost:
+                type: number
+                format: float
+              breakdown:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                    cost:
+                      type: number
+                      format: float
+
+    SecurityEvent:
+      type: object
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        timestamp:
+          type: string
+          format: date-time
+        eventType:
+          type: string
+          enum: [LOGIN, POLICY_VIOLATION, RESOURCE_CHANGE, PRIVILEGED_ACCESS, THREAT_DETECTED]
+        severity:
+          type: string
+          enum: [LOW, MEDIUM, HIGH, CRITICAL]
+        source:
+          type: string
+        principalId:
+          type: string
+          format: uuid
+        resourceId:
+          type: string
+        status:
+          type: string
+          enum: [OPEN, INVESTIGATING, RESOLVED, CLOSED]
+        assignedTo:
+          type: string
+
+    SecurityEventDetail:
+      allOf:
+        - $ref: '#/components/schemas/SecurityEvent'
+        - type: object
+          properties:
+            details:
+              type: object
+              additionalProperties: true
+            timeline:
+              type: array
+              items:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                  action:
+                    type: string
+                  user:
+                    type: string
+                  notes:
+                    type: string
+
+    UpdateSecurityEventRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [INVESTIGATING, RESOLVED, CLOSED]
+        assignedTo:
+          type: string
+        notes:
+          type: string
+
+    EmergencyAccessRequest:
+      type: object
+      required: [justification, requiredAccess, incidentId]
+      properties:
+        justification:
+          type: string
+        requiredAccess:
+          type: string
+          enum: [READ_ONLY, MODIFY, ADMIN]
+        incidentId:
+          type: string
+        duration:
+          type: integer
+          minimum: 1
+          maximum: 24
+          description: Duration in hours
+
+    EmergencyAccessResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [PENDING, APPROVED, DENIED]
+        approvedBy:
+          type: string
+        validUntil:
+          type: string
+          format: date-time
+        accessToken:
+          type: string
+          description: Temporary access token (only if approved)
+
+    PaginationMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        totalItems:
+          type: integer
+        totalPages:
+          type: integer
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+          additionalProperties: true
+
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    
+    Forbidden:
+      description: Access denied
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    
+    Conflict:
+      description: Resource already exists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

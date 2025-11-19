@@ -1,0 +1,76 @@
+# Azure/Bicep specific
+*.log
+.env*
+local.settings.json
+.azure/
+.azuretools/
+
+# PowerShell specific
+*.ps1xml
+*.psd1
+*.psm1
+
+# Build artifacts
+build/
+dist/
+bin/
+obj/
+out/
+target/
+
+# IDE and editor files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS specific
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Temporary files and caches
+temp/
+tmp/
+*.cache
+*.bak
+
+# Secrets and sensitive data
+secrets/
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.cer
+
+# Test results and coverage
+TestResults/
+coverage/
+*.trx
+*.coverage
+
+# Node.js (if any frontend tooling)
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Python (if any Python tooling)
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Documentation build artifacts
+docs/build/
+docs/_build/
+
+# Terraform (backup - in case of mixed IaC)
+*.tfstate*
+*.tfvars
+.terraform/
+.terraform.lock.hcl

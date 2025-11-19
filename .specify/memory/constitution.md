@@ -1,14 +1,16 @@
 <!--
   Sync Impact Report:
-  Version change: Template → 1.0.0 (Initial constitution creation)
-  Modified principles: All principles defined from template placeholders
-  Added sections: Core Principles (5), Azure Architecture Standards, DevSecOps Workflow
-  Removed sections: Generic template placeholder sections
+  Version change: 1.1.0 → 1.2.0 (GitHub Issue closure enforcement)
+  Modified principles: 
+    - GitHub Flow Process → Enhanced with mandatory GitHub Issue closure requirement
+  Added sections: 
+    - GitHub Issue Management (mandatory closure upon task completion and branch merge)
+  Removed sections: None
   Templates requiring updates: 
-    ✅ plan-template.md - Constitution Check section aligns
-    ✅ spec-template.md - User scenarios align with iterative delivery principle  
-    ✅ tasks-template.md - Task categorization aligns with phased approach
-  Follow-up TODOs: None - all placeholders filled with concrete values
+    ✅ tasks-template.md - Updated GitHub Flow requirements to include Issue closure mandate
+    ✅ plan-template.md - Constitution Check includes Issue closure compliance (no changes needed)
+    ✅ spec-template.md - User scenarios align with iterative delivery principle (no changes needed)
+  Follow-up TODOs: None - GitHub Issue closure requirement now enforced in constitution and templates
 -->
 
 # Cloud Quick Start Infrastructure Constitution
@@ -68,6 +70,39 @@ All features must be decomposable into small, independently testable, and deploy
 
 ## DevSecOps Workflow
 
+### GitHub Flow Process (NON-NEGOTIABLE)
+EVERY single task or GitHub Issue MUST be implemented on a separate branch created from the feature branch. This ensures atomic changes and enables proper code review. The mandatory workflow is:
+
+1. **Feature Branch**: Create from main/default branch using naming convention `###-feature-name`
+2. **Task Branch**: Create separate branch from feature branch for EACH individual task using `###-feature-name-taskID`
+3. **Implementation**: Complete single task/issue on task branch with proper testing
+4. **Review**: Submit pull request from task branch to feature branch (never directly to main)
+5. **Merge**: Only merge to feature branch after passing all quality gates and reviews
+6. **Issue Closure**: ALWAYS close the related GitHub Issue when task is completed and branch is merged into the feature branch
+7. **Integration**: Feature branch merges to main only when entire feature is complete
+
+NO exceptions allowed. Manual changes, direct commits to feature branches, or skipping task-level branches violate this constitution and require architect approval with written justification.
+
+### GitHub Issue Management (NON-NEGOTIABLE)
+Every task corresponds to a GitHub Issue that MUST be properly tracked and closed. The mandatory issue lifecycle is:
+
+- **Creation**: GitHub Issue created for each task before work begins
+- **Assignment**: Issue assigned to developer implementing the task
+- **Linking**: Task branch name references the issue number for traceability
+- **Progress Updates**: Issue status updated as work progresses
+- **Closure**: Issue MUST be closed immediately when task branch is merged to feature branch
+- **Verification**: No task branches can be merged without corresponding issue closure
+
+This ensures complete audit trail, proper task tracking, and accountability for all work performed.
+
+### Branch Strategy Standards
+- **Feature Branch Naming**: `###-feature-name` (where ### is 3-digit issue/spec number)
+- **Task Branch Naming**: `###-feature-name-task##` (where ## is sequential task identifier)
+- **Branch Protection**: Feature and main branches must have protection rules enabled
+- **Merge Requirements**: Minimum 1 reviewer approval, all status checks must pass
+- **Branch Cleanup**: Task branches deleted after successful merge to feature branch
+- **Commit Standards**: Conventional commits format required, detailed task-specific messages
+
 ### Code Quality Gates
 - All infrastructure code must pass automated linting and validation
 - Peer review required for all infrastructure changes
@@ -76,11 +111,10 @@ All features must be decomposable into small, independently testable, and deploy
 - Infrastructure tests (unit, integration, end-to-end) required
 
 ### Deployment Process
-- Feature branches for all changes with descriptive naming (###-feature-name)
-- Pull request reviews by designated infrastructure architects
-- Automated testing in dedicated test environments
 - Staged rollouts: Development → Test → Staging → Production
+- Automated testing in dedicated test environments
 - Rollback procedures documented and tested for all deployments
+- Environment-specific configuration management through proper branching
 
 ### Change Management
 - All changes must include impact assessment and rollback plan
@@ -93,8 +127,12 @@ All features must be decomposable into small, independently testable, and deploy
 
 This constitution supersedes all other development practices and standards. All infrastructure deployments, architecture reviews, and technical decisions must demonstrate explicit compliance with these principles. Violations require written justification and architect approval before proceeding.
 
+**GitHub Flow Enforcement**: Every pull request MUST demonstrate compliance with the mandatory GitHub Flow process. Task-level branching is non-negotiable - violations result in immediate PR rejection. All AI assistants and development tools must enforce these branching requirements in their guidance and code generation.
+
+**GitHub Issue Closure Enforcement**: Every task completion MUST include closing the related GitHub Issue when the branch is merged to the feature branch. Pull requests without proper issue closure will be rejected. This ensures complete task lifecycle management and audit trail compliance.
+
 Amendment process requires proposal documentation, impact assessment, stakeholder review, and version increment following semantic versioning (MAJOR for principle changes, MINOR for new sections, PATCH for clarifications).
 
 All pull requests must include constitution compliance verification. Complexity that violates the "Small Iterations" principle must be justified with clear decomposition strategy. Use Azure Well-Architected Review Tool for runtime architecture guidance and regular compliance validation.
 
-**Version**: 1.0.0 | **Ratified**: 2025-11-18 | **Last Amended**: 2025-11-18
+**Version**: 1.2.0 | **Ratified**: 2025-11-18 | **Last Amended**: 2025-11-19

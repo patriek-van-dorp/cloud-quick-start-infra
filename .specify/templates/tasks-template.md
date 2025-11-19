@@ -8,9 +8,19 @@ description: "Task list template for feature implementation"
 **Input**: Design documents from `/specs/[###-feature-name]/`
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
+**GitHub Flow Requirements**: Each task MUST be implemented on a separate branch created from the feature branch `[###-feature-name]`. Use naming convention `[###-feature-name]-task##` where ## is the task ID number. CRITICAL: The related GitHub Issue MUST be closed when the task is completed and the branch is merged into the feature branch.
+
 **Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
 
-**Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
+**GitHub Issue Management**: Each task corresponds to a GitHub Issue that must be tracked throughout the implementation lifecycle:
+- Create GitHub Issue for each task before work begins
+- Assign the issue to the developer implementing the task  
+- Reference the issue number in the task branch name for traceability
+- Update issue status as work progresses
+- MANDATORY: Close the GitHub Issue when task branch is merged to feature branch
+- Verify issue closure before considering task complete
+
+**Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story. Each task requires its own branch and pull request to the feature branch.
 
 ## Format: `[ID] [P?] [Story] Description`
 
