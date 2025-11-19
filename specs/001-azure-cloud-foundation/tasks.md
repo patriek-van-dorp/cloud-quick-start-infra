@@ -48,7 +48,7 @@
 - [X] T004 [P] Setup Azure Verified Modules registry configuration in bicepconfig.json
 - [X] T005 [P] Create PowerShell deployment scripts in scripts/powershell/Deploy-Foundation.ps1
 - [X] T006 [P] Setup environment parameter files in environments/dev-parameters.json
-- [ ] T007 [P] Setup environment parameter files in environments/prod-parameters.json
+- [X] T007 [P] Setup environment parameter files in environments/prod-parameters.json
 - [ ] T008 Create GitHub Actions workflow for CI/CD in .github/workflows/deploy-foundation.yml
 
 **Test Tasks**:
