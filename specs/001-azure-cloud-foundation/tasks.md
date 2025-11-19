@@ -49,7 +49,7 @@
 - [X] T005 [P] Create PowerShell deployment scripts in scripts/powershell/Deploy-Foundation.ps1
 - [X] T006 [P] Setup environment parameter files in environments/dev-parameters.json
 - [X] T007 [P] Setup environment parameter files in environments/prod-parameters.json
-- [ ] T008 Create GitHub Actions workflow for CI/CD in .github/workflows/deploy-foundation.yml
+- [X] T008 Create GitHub Actions workflow for CI/CD in .github/workflows/deploy-foundation.yml
 
 **Test Tasks**:
 - [ ] T009 Create validation script for repository structure in scripts/Test-RepoStructure.ps1
