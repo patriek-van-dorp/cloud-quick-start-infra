@@ -86,7 +86,7 @@ NO exceptions allowed. Manual changes, direct commits to feature branches, or sk
 ### GitHub Issue Management (NON-NEGOTIABLE)
 Every task corresponds to a GitHub Issue that MUST be properly tracked and closed. The mandatory issue lifecycle is:
 
-- **Creation**: GitHub Issue created for each task before work begins
+- **Creation**: Verify that a GitHub Issue is created for each task before work begins. If the Issue does not exist yet, create it.
 - **Assignment**: Issue assigned to developer implementing the task
 - **Linking**: Task branch name references the issue number for traceability
 - **Progress Updates**: Issue status updated as work progresses
