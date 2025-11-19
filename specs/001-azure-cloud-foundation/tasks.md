@@ -31,7 +31,7 @@
 
 ### Core Setup Tasks
 
-- [ ] T001 Create repository structure for Enterprise Scale Landing Zone in root directory
+- [X] T001 Create repository structure for Enterprise Scale Landing Zone in root directory
 - [ ] T002 [P] Setup development environment configuration in .devcontainer/devcontainer.json
 - [ ] T003 [P] Create main Bicep entry point file in main.bicep
 - [ ] T004 [P] Setup Azure Verified Modules registry configuration in bicepconfig.json
