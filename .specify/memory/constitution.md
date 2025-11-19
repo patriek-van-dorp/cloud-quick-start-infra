@@ -90,6 +90,8 @@ Every task corresponds to a GitHub Issue that MUST be properly tracked and close
 - **Assignment**: Issue assigned to developer implementing the task
 - **Linking**: Task branch name references the issue number for traceability
 - **Progress Updates**: Issue status updated as work progresses
+- **Syncing**: Ensure that when a task is completed, the branch is synchronized to the github repository on github.com.
+- **Pull Request**: If a task is completed, ask for approval to create a pull request. If approve by the user, create the pull request automatically.
 - **Closure**: Issue MUST be closed immediately when task branch is merged to feature branch
 - **Verification**: No task branches can be merged without corresponding issue closure
 

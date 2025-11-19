@@ -7,9 +7,11 @@
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story with human interaction points at every step.
 
-**CONSTITUTIONAL REQUIREMENTS (NON-NEGOTIABLE)**:
+**CONSTITUTIONAL REQUIREMENTS (NON-NEGOTIABLE) - Constitution v1.2.0**:
 - **GitHub Flow Process**: EVERY task MUST be implemented on a separate branch from the feature branch using naming convention `001-azure-cloud-foundation-task##` (where ## is the task ID number)
-- **GitHub Issue Management**: Each task corresponds to a GitHub Issue that MUST be created before work begins and MUST be closed immediately when the task branch is merged to the feature branch
+- **GitHub Issue Management**: Each task corresponds to a GitHub Issue that MUST be created before work begins and MUST be closed automatically when the task branch is merged to the feature branch
+- **Branch Synchronization**: Task branches MUST be synchronized to GitHub repository upon completion to ensure proper audit trail and collaboration
+- **Pull Request Automation**: Upon task completion, system MUST ask for user approval to create automated pull request from task branch to feature branch
 - **Branch Strategy**: Task branches are created from feature branch `001-azure-cloud-foundation`, never from main branch
 - **Merge Requirements**: Task branches merge to feature branch only after passing all quality gates and peer review
 
@@ -20,7 +22,9 @@
 - Include exact file paths in descriptions  
 - Each task takes maximum 8 hours to complete (measured as: file creation + configuration + basic validation, excluding extensive testing)
 - Human approval required before starting each task
-- **GitHub Issue**: Each task requires GitHub Issue creation before work begins and closure upon task branch merge
+- **GitHub Issue**: Each task requires GitHub Issue creation before work begins and automatic closure upon task branch merge
+- **Branch Sync**: Task completion includes automatic GitHub repository synchronization
+- **Pull Request**: Automated pull request creation with user approval upon task completion
 
 ## Path Conventions
 
@@ -346,4 +350,4 @@ Final Integration: T089-T096
 
 This task structure enables incremental delivery with human oversight at every step, ensuring proper validation and approval before proceeding to each component of the Azure Cloud Foundation.
 
-**Constitutional Compliance**: All tasks now comply with GitHub Flow Process and GitHub Issue Management requirements. Each task must follow the mandatory branch naming convention and issue closure workflow as specified in the constitution version 1.2.0.
+**Constitutional Compliance**: All tasks comply with GitHub Flow Process and GitHub Issue Management requirements per constitution version 1.2.0. Each task follows mandatory branch naming convention, automated issue closure workflow, branch synchronization to GitHub repository, and automated pull request creation with user approval as specified in constitution v1.2.0.
