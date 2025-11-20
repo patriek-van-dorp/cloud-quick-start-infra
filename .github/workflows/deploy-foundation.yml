@@ -1,0 +1,95 @@
+name: Deploy Foundation
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+        - dev
+        - prod
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Bicep
+      run: |
+        curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+        chmod +x ./bicep
+        sudo mv ./bicep /usr/local/bin/bicep
+        bicep --version
+    
+    - name: Validate Bicep templates
+      run: |
+        find . -name "*.bicep" -type f -exec bicep build --file {} \;
+
+  test:
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup PowerShell
+      shell: pwsh
+      run: |
+        $PSVersionTable.PSVersion
+    
+    - name: Run PowerShell tests
+      shell: pwsh
+      run: |
+        # Run any test scripts if they exist
+        if (Test-Path "scripts/Test-*.ps1") {
+          Get-ChildItem "scripts/Test-*.ps1" | ForEach-Object {
+            & $_.FullName
+          }
+        }
+
+  deploy-dev:
+    if: github.event.inputs.environment == 'dev'
+    runs-on: ubuntu-latest
+    needs: [validate, test]
+    environment: dev
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        allow-no-subscriptions: true
+    
+    - name: Deploy Foundation to Dev
+      run: |
+        az deployment tenant create \
+          --location westeurope \
+          --template-file main.bicep \
+          --parameters @environments/dev-parameters.json \
+          --name "foundation-dev-$(date +%Y%m%d-%H%M%S)"
+
+  deploy-prod:
+    if: github.event.inputs.environment == 'prod'
+    runs-on: ubuntu-latest
+    needs: [validate, test]
+    environment: prod
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        allow-no-subscriptions: true
+    
+    - name: Deploy Foundation to Prod
+      run: |
+        az deployment tenant create \
+          --location westeurope \
+          --template-file main.bicep \
+          --parameters @environments/prod-parameters.json \
+          --name "foundation-prod-$(date +%Y%m%d-%H%M%S)"
