@@ -52,8 +52,8 @@
 - [X] T008 Create GitHub Actions workflow for CI/CD in .github/workflows/deploy-foundation.yml
 
 **Test Tasks**:
-- [ ] T009 Create validation script for repository structure in scripts/Test-RepoStructure.ps1
-- [ ] T010 Validate development environment setup and tool versions in scripts/Test-Prerequisites.ps1
+- [X] T009 Create validation script for repository structure in scripts/powershell/Test-RepoStructure.ps1
+- [X] T010 Validate development environment setup and tool versions in scripts/powershell/Test-Prerequisites.ps1
 
 ---
 
