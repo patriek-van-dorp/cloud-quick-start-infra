@@ -1,10 +1,16 @@
 name: Deploy Foundation
 
 on:
-  push:
-    branches: [ main, 001-azure-cloud-foundation ]
-  pull_request:
-    branches: [ main, 001-azure-cloud-foundation ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+        - dev
+        - prod
 
 jobs:
   validate:
@@ -45,7 +51,7 @@ jobs:
         }
 
   deploy-dev:
-    if: github.ref == 'refs/heads/001-azure-cloud-foundation' && github.event_name == 'push'
+    if: github.event.inputs.environment == 'dev'
     runs-on: ubuntu-latest
     needs: [validate, test]
     environment: dev
@@ -67,7 +73,7 @@ jobs:
           --name "foundation-dev-$(date +%Y%m%d-%H%M%S)"
 
   deploy-prod:
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.event.inputs.environment == 'prod'
     runs-on: ubuntu-latest
     needs: [validate, test]
     environment: prod
