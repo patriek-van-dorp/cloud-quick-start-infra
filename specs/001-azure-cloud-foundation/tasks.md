@@ -65,7 +65,7 @@
 
 ### Shared Infrastructure
 
-- [ ] T011 Create management group hierarchy Bicep module in modules/management-groups/main.bicep
+- [X] T011 Create management group hierarchy Bicep module in modules/management-groups/main.bicep
 - [ ] T012 [P] Create subscription vending Bicep module in modules/subscriptions/main.bicep
 - [ ] T013 [P] Create Azure region configuration in modules/regions/main.bicep
 - [ ] T014 Deploy root management group "Toyota Louwmans Financial Services" using modules/management-groups/main.bicep

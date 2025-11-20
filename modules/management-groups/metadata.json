@@ -1,0 +1,75 @@
+{
+  "itemDisplayName": "Management Group Hierarchy for Toyota Louwmans Financial Services",
+  "description": "Creates an 8-level Enterprise Scale Landing Zone management group hierarchy with complete organizational isolation and FSI compliance governance boundaries",
+  "summary": "Deploys management group hierarchy for Toyota Louwmans Financial Services with platform services (Identity, Connectivity, Management) and landing zones (Corp, Online) plus Sandbox and Decommissioned management groups",
+  "githubUsername": "patriek-van-dorp",
+  "dateUpdated": "2025-11-20",
+  "version": "1.0.0",
+  "type": "template",
+  "scope": "tenant",
+  "compliance": {
+    "frameworks": [
+      "FSI",
+      "SOX",
+      "GDPR", 
+      "PCI-DSS",
+      "DORA"
+    ],
+    "certifications": [
+      "Azure Well-Architected Framework",
+      "Enterprise Scale Landing Zone",
+      "Financial Services Industry"
+    ]
+  },
+  "categories": [
+    "Management Groups",
+    "Enterprise Scale Landing Zone", 
+    "Financial Services",
+    "Governance",
+    "Compliance"
+  ],
+  "tags": [
+    "management-groups",
+    "eslz",
+    "financial-services",
+    "fsi",
+    "sox",
+    "gdpr",
+    "pci-dss",
+    "governance",
+    "compliance",
+    "toyota-louwmans",
+    "isolation",
+    "hierarchy"
+  ],
+  "environments": [
+    "Production",
+    "Non-Production",
+    "Sandbox"
+  ],
+  "validFrom": "2025-11-20",
+  "supportedBy": "Azure Infrastructure Team",
+  "mainTemplate": "main.bicep",
+  "parameters": "parameters.json",
+  "documentation": "README.md",
+  "dependencies": {
+    "azureProvider": "Microsoft.Management/managementGroups@2023-04-01",
+    "minimumScope": "Tenant Root",
+    "requiredRoles": [
+      "Management Group Contributor",
+      "Owner (Tenant Root)"
+    ]
+  },
+  "outputs": {
+    "managementGroups": {
+      "count": 8,
+      "levels": 3,
+      "rootGroup": "TLFS-ROOT"
+    }
+  },
+  "testing": {
+    "unitTests": "tests/unit/management-groups.tests.ps1",
+    "integrationTests": "scripts/powershell/Test-ManagementGroups.ps1",
+    "validationScript": "scripts/powershell/Test-RepoStructure.ps1"
+  }
+}
