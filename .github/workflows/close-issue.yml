@@ -3,7 +3,6 @@ name: Close Issue on PR Merge
 on:
   pull_request:
     types: [closed]
-    branches: [001-azure-cloud-foundation]
 
 jobs:
   close-issue:
