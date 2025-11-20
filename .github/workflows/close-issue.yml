@@ -1,0 +1,37 @@
+name: Close Issue on PR Merge
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [001-azure-cloud-foundation]
+
+jobs:
+  close-issue:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+    - name: Extract Task Number
+      id: extract
+      run: |
+        BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+        if [[ $BRANCH_NAME =~ 001-azure-cloud-foundation-task([0-9]+) ]]; then
+          TASK_NUMBER="${BASH_REMATCH[1]}"
+          echo "task_number=$TASK_NUMBER" >> $GITHUB_OUTPUT
+        else
+          echo "No task number found in branch name"
+          exit 1
+        fi
+    
+    - name: Close Issue
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const taskNumber = ${{ steps.extract.outputs.task_number }};
+          const issueNumber = taskNumber; // Assuming issue number matches task number, adjust if needed
+          
+          await github.rest.issues.update({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issueNumber,
+            state: 'closed'
+          });
