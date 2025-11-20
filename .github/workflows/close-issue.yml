@@ -27,7 +27,7 @@ jobs:
       with:
         script: |
           const taskNumber = ${{ steps.extract.outputs.task_number }};
-          const issueNumber = taskNumber; // Assuming issue number matches task number, adjust if needed
+          const issueNumber = taskNumber + 1; // Issue number is task number + 1
           
           await github.rest.issues.update({
             owner: context.repo.owner,
