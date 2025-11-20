@@ -86,10 +86,12 @@ NO exceptions allowed. Manual changes, direct commits to feature branches, or sk
 ### GitHub Issue Management (NON-NEGOTIABLE)
 Every task corresponds to a GitHub Issue that MUST be properly tracked and closed. The mandatory issue lifecycle is:
 
-- **Creation**: GitHub Issue created for each task before work begins
+- **Creation**: Verify that a GitHub Issue is created for each task before work begins. If the Issue does not exist yet, create it using a minimal labeling structure as it is already available in the Github repo.
 - **Assignment**: Issue assigned to developer implementing the task
 - **Linking**: Task branch name references the issue number for traceability
 - **Progress Updates**: Issue status updated as work progresses
+- **Syncing**: Ensure that when a task is completed, the branch is synchronized to the github repository on github.com.
+- **Pull Request**: If a task is completed, ask for approval to create a pull request to merge . If approve by the user, create the pull request automatically.
 - **Closure**: Issue MUST be closed immediately when task branch is merged to feature branch
 - **Verification**: No task branches can be merged without corresponding issue closure
 
@@ -97,9 +99,9 @@ This ensures complete audit trail, proper task tracking, and accountability for 
 
 ### Branch Strategy Standards
 - **Feature Branch Naming**: `###-feature-name` (where ### is 3-digit issue/spec number)
-- **Task Branch Naming**: `###-feature-name-task##` (where ## is sequential task identifier)
+- **Task Branch Naming**: `###-feature-name-task###` (where ### is sequential task identifier)
 - **Branch Protection**: Feature and main branches must have protection rules enabled
-- **Merge Requirements**: Minimum 1 reviewer approval, all status checks must pass
+- **Merge Requirements**: Minimum 1 reviewer approval, all status checks must pass. Task branches ALWAYS merge back into their relative feature branch. NEVER into main.
 - **Branch Cleanup**: Task branches deleted after successful merge to feature branch
 - **Commit Standards**: Conventional commits format required, detailed task-specific messages
 

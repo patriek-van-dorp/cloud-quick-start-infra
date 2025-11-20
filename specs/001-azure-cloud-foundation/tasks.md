@@ -7,9 +7,11 @@
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story with human interaction points at every step.
 
-**CONSTITUTIONAL REQUIREMENTS (NON-NEGOTIABLE)**:
+**CONSTITUTIONAL REQUIREMENTS (NON-NEGOTIABLE) - Constitution v1.2.0**:
 - **GitHub Flow Process**: EVERY task MUST be implemented on a separate branch from the feature branch using naming convention `001-azure-cloud-foundation-task##` (where ## is the task ID number)
-- **GitHub Issue Management**: Each task corresponds to a GitHub Issue that MUST be created before work begins and MUST be closed immediately when the task branch is merged to the feature branch
+- **GitHub Issue Management**: Each task corresponds to a GitHub Issue that MUST be created before work begins and MUST be closed automatically when the task branch is merged to the feature branch
+- **Branch Synchronization**: Task branches MUST be synchronized to GitHub repository upon completion to ensure proper audit trail and collaboration
+- **Pull Request Automation**: Upon task completion, system MUST ask for user approval to create automated pull request from task branch to feature branch
 - **Branch Strategy**: Task branches are created from feature branch `001-azure-cloud-foundation`, never from main branch
 - **Merge Requirements**: Task branches merge to feature branch only after passing all quality gates and peer review
 
@@ -20,7 +22,9 @@
 - Include exact file paths in descriptions  
 - Each task takes maximum 8 hours to complete (measured as: file creation + configuration + basic validation, excluding extensive testing)
 - Human approval required before starting each task
-- **GitHub Issue**: Each task requires GitHub Issue creation before work begins and closure upon task branch merge
+- **GitHub Issue**: Each task requires GitHub Issue creation before work begins and automatic closure upon task branch merge
+- **Branch Sync**: Task completion includes automatic GitHub repository synchronization
+- **Pull Request**: Automated pull request creation with user approval upon task completion
 
 ## Path Conventions
 
@@ -40,15 +44,15 @@
 
 - [X] T001 Create repository structure for Enterprise Scale Landing Zone in root directory
 - [X] T002 [P] Setup development environment configuration in .devcontainer/devcontainer.json
-- [ ] T003 [P] Create main Bicep entry point file in main.bicep
-- [ ] T004 [P] Setup Azure Verified Modules registry configuration in bicepconfig.json
-- [ ] T005 [P] Create PowerShell deployment scripts in scripts/Deploy-Foundation.ps1
-- [ ] T006 [P] Setup environment parameter files in environments/dev-parameters.json
-- [ ] T007 [P] Setup environment parameter files in environments/prod-parameters.json
-- [ ] T008 Create GitHub Actions workflow for CI/CD in .github/workflows/deploy-foundation.yml
+- [X] T003 [P] Create main Bicep entry point file in main.bicep
+- [X] T004 [P] Setup Azure Verified Modules registry configuration in bicepconfig.json
+- [X] T005 [P] Create PowerShell deployment scripts in scripts/powershell/Deploy-Foundation.ps1
+- [X] T006 [P] Setup environment parameter files in environments/dev-parameters.json
+- [X] T007 [P] Setup environment parameter files in environments/prod-parameters.json
+- [X] T008 Create GitHub Actions workflow for CI/CD in .github/workflows/deploy-foundation.yml
 
 **Test Tasks**:
-- [ ] T009 Create validation script for repository structure in scripts/Test-RepoStructure.ps1
+- [X] T009 Create validation script for repository structure in scripts/powershell/Test-RepoStructure.ps1
 - [ ] T010 Validate development environment setup and tool versions in scripts/Test-Prerequisites.ps1
 
 ---
@@ -269,6 +273,9 @@
 - [ ] T089 Create end-to-end integration test suite in scripts/Test-EndToEnd.ps1
 - [ ] T090 [P] Create disaster recovery validation in scripts/Test-DisasterRecovery.ps1
 - [ ] T091 [P] Create compliance validation test suite in scripts/Test-ComplianceValidation.ps1
+- [ ] T103 [P] Create disaster recovery and backup capabilities implementation in modules/shared-services/disaster-recovery/main.bicep
+- [ ] T104 [P] Create cross-region backup and recovery automation in scripts/powershell/disaster-recovery/Invoke-DisasterRecovery.ps1
+- [ ] T105 Create tenant isolation validation and monitoring in modules/governance/tenant-isolation/main.bicep
 
 ### Documentation and Handover
 
@@ -327,16 +334,16 @@ Final Integration: T089-T096
 
 ## Summary
 
-- **Total Tasks**: 102 tasks across 8 phases (updated to include new requirements)
+- **Total Tasks**: 107 tasks across 8 phases (updated to include disaster recovery and tenant isolation requirements)
 - **User Story Distribution**:
   - Setup: 10 tasks (T001-T010)
-  - Foundation: 7 tasks (T011-T017)
+  - Foundation: 7 tasks (T011-T017)  
   - US1 (Identity): 15 tasks (T018-T031, T097)
-  - US2 (Governance): 20 tasks (T032-T046, T098-T102)
+  - US2 (Governance): 22 tasks (T032-T046, T098-T102, T106-T107)
   - US3 (Cost Management): 13 tasks (T047-T059)
   - US4 (Networking): 15 tasks (T060-T073, T100)
   - US5 (Monitoring): 15 tasks (T074-T088)
-  - Integration: 8 tasks (T089-T096)
+  - Integration: 11 tasks (T089-T096, T103-T105)
 - **GitHub Workflow**: Every task requires GitHub Issue creation and task branch (001-azure-cloud-foundation-task##)
 - **Parallel Opportunities**: 47 tasks marked with [P] can run in parallel
 - **Independent Testing**: Each user story has 3-6 validation tasks requiring human approval
@@ -346,4 +353,4 @@ Final Integration: T089-T096
 
 This task structure enables incremental delivery with human oversight at every step, ensuring proper validation and approval before proceeding to each component of the Azure Cloud Foundation.
 
-**Constitutional Compliance**: All tasks now comply with GitHub Flow Process and GitHub Issue Management requirements. Each task must follow the mandatory branch naming convention and issue closure workflow as specified in the constitution version 1.2.0.
+**Constitutional Compliance**: All tasks comply with GitHub Flow Process and GitHub Issue Management requirements per constitution version 1.2.0. Each task follows mandatory branch naming convention, automated issue closure workflow, branch synchronization to GitHub repository, and automated pull request creation with user approval as specified in constitution v1.2.0.
