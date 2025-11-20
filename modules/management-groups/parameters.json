@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "managementGroupPrefix": {
+      "value": "TLFS"
+    },
+    "rootMgDisplayName": {
+      "value": "Toyota Louwmans Financial Services"
+    },
+    "parentManagementGroupId": {
+      "value": ""
+    },
+    "location": {
+      "value": "West Europe"
+    },
+    "tags": {
+      "value": {
+        "Organization": "Toyota Louwmans Financial Services",
+        "Environment": "Foundation",
+        "CostCenter": "IT-Infrastructure",
+        "Owner": "Azure Administrators",
+        "Purpose": "Enterprise Scale Landing Zone Foundation",
+        "ComplianceFramework": "FSI-SOX-GDPR-PCI",
+        "CreatedBy": "Bicep-Management-Groups-Module",
+        "DataResidency": "EU-Only",
+        "BackupRequired": "True",
+        "MonitoringRequired": "True",
+        "AuditRetention": "7-Years"
+      }
+    }
+  }
+}
